@@ -1,0 +1,45 @@
+---
+title: "week12"
+author: "Lina Huang"
+date: "2023-04-21"
+output: html_document
+---
+
+```{r}
+# Script Settings and Resources
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# Script Settings and Resources
+library(tidyverse)
+library(httr)
+```
+
+```{r}
+#Data Import and Cleaning
+# specify the URL and parameters for the Reddit API endpoint
+url <- "https://www.reddit.com/r/IOPsychology/new.json"
+params <- list(limit = 1000, t = "year")
+
+# send a GET request to the API endpoint
+response <- GET(url, query = params)
+
+# extract the upvotes and titles of the posts from the JSON response
+posts <- content(response)$data$children
+upvotes <- sapply(posts, function(x) x$data$ups)
+titles <- sapply(posts, function(x) x$data$title)
+
+# create the week12_tbl tibble with upvotes and title variables
+week12_tbl <- tibble(upvotes = upvotes, title = titles)
+
+# save downloaded data to the data folder
+write_csv(week12_tbl, "../data/week12_tbl.csv")
+```
+
+```{r}
+# Read data from the data folder
+week12_tbl<-read_csv("../data/week12_tbl.csv", show_col_types = FALSE)
+```
+
+```{r}
+
+```
+
