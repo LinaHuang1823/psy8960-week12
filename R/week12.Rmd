@@ -154,7 +154,16 @@ for (i in 1:k) {
   cat("Lowest probability document:", lowest_prob_doc, "\n\n")
 }
 
-#Reviewing the original text of the documents with the highest and lowest probabilities for each topic can help us assess whether the topic names derived from the beta matrix conceptually match the content of the original posts. If they match well, it provides evidence of content validity, indicating that the topics identified by the LDA model represent meaningful and interpretable constructs in the dataset. I think the topic names derived from my interpretation of the beta matrix conceptually match with the content of the original posts. For example, topic 3, we can see that Highest probability document from the original posts contain words such as " professor at Purdue", "siop", and "future work research" that match the term "research" pretty well. 
+#Reviewing the original text of the documents with the highest and lowest 
+#probabilities for each topic can help us assess whether the topic names derived 
+#from the beta matrix conceptually match the content of the original posts. 
+#If they match well, it provides evidence of content validity, indicating that 
+#the topics identified by the LDA model represent meaningful and interpretable 
+#constructs in the dataset. I think the topic names derived from my interpretation 
+#of the beta matrix conceptually match with the content of the original posts. 
+#For example, topic 3, we can see that Highest probability document from the 
+#original posts contain words such as " professor at Purdue", "siop", and "future 
+#work research" that match the term "research" pretty well. 
 ```
 
 
@@ -177,7 +186,11 @@ wordcloud(words = names(sorted_freqs),
           rot.per = 0.35, 
           colors = brewer.pal(8, "Dark2"))
 
-#Interpretation: The wordcloud shows that the most frequent words in the io_corpus are related to the topics of "research" , "career", "master", and "job". This is consistent with the topics identified by the LDA model and suggests that these topics are important and frequently discussed in the io_psychology subreddit.
+#Interpretation: The wordcloud shows that the most frequent words in the 
+#io_corpus are related to the topics of "research" , "career", "master", and 
+#"job". This is consistent with the topics identified by the LDA model and 
+#suggests that these topics are important and frequently discussed in the 
+#io_psychology subreddit.
 ```
 
 ```{r}
@@ -196,5 +209,7 @@ anova_result <- aov(upvote_count ~ factor(topic), data = final_tbl)
 # Print the summary of the ANOVA test
 summary(anova_result) 
 
-#Since the p-value is greater than the significance level, we fail to reject the null hypothesis and cannot not conclude that there is a significant difference in upvotes between the topics.
+#Since the p-value is greater than the significance level, we fail to reject 
+#the null hypothesis and cannot not conclude that there is a significant 
+#difference in upvotes between the topics.
 ```
